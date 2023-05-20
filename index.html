@@ -689,31 +689,34 @@
           </form>
 
           <script>
-            document.getElementById('contact-form').addEventListener('submit', function(event) {
-              event.preventDefault();
-              // Ambil nilai input
-              var name = document.getElementById('name').value;
-              var message = document.getElementById('message').value;
-              
-              // Kirim pesan menggunakan EmailJS
-              var templateParams = {
-                from_name: name,
-                message: message
-              };
-              
-              emailjs.send('service_05qki3c', 'template_k4w167h', templateParams)
-                .then(function(response) {
-                  console.log('Pesan berhasil dikirim!', response.status, response.text);
-                  // Tambahkan tindakan yang ingin Anda lakukan setelah pesan terkirim
-                }, function(error) {
-                  console.log('Pesan gagal dikirim:', error);
-                  // Tambahkan tindakan yang ingin Anda lakukan jika pesan gagal dikirim
-                });
-                
-              // Kosongkan nilai input setelah mengirim pesan
-              document.getElementById('name').value = '';
-              document.getElementById('message').value = '';
-            });
+            (function() {
+              document.getElementById('contact-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                // Ambil nilai input
+                var name = document.getElementById('name').value;
+                var message = document.getElementById('message').value;
+
+                // Kirim pesan menggunakan EmailJS
+                var templateParams = {
+                  from_name: name,
+                  message: message,
+                  to_email: 'jehianathayata@gmail.com' // Ganti dengan alamat email tujuan Anda
+                };
+
+                emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+                  .then(function(response) {
+                    console.log('Pesan berhasil dikirim!', response.status, response.text);
+                    // Tambahkan tindakan yang ingin Anda lakukan setelah pesan terkirim
+                  }, function(error) {
+                    console.log('Pesan gagal dikirim:', error);
+                    // Tambahkan tindakan yang ingin Anda lakukan jika pesan gagal dikirim
+                  });
+
+                // Kosongkan nilai input setelah mengirim pesan
+                document.getElementById('name').value = '';
+                document.getElementById('message').value = '';
+              });
+            })();
           </script>
         </section>
       </article>
