@@ -705,9 +705,11 @@
 
                 emailjs.send('service_05qki3c', 'template_k4w167h', templateParams)
                   .then(function(response) {
+                    alert('Pesan berhasil dikirim!');
                     console.log('Pesan berhasil dikirim!', response.status, response.text);
                     // Tambahkan tindakan yang ingin Anda lakukan setelah pesan terkirim
                   }, function(error) {
+                    alert('Pesan gagal dikirim!');
                     console.log('Pesan gagal dikirim:', error);
                     // Tambahkan tindakan yang ingin Anda lakukan jika pesan gagal dikirim
                   });
