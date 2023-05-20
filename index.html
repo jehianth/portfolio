@@ -50,19 +50,6 @@
               </a>
             </div>
           </li>
-          <!-- phone -->
-          <li class="contact-item">
-            <div class="icon-box">
-              <ion-icon name="phone-portrait-outline"></ion-icon>
-            </div>
-            <div class="contact-info">
-              <p class="contact-title">Phone</p>
-              <a 
-                href="https://wa.me/6281226769494" 
-                class="contact-link" target="_blank">+62 812-2676-9494
-              </a>
-            </div>
-          </li>
           <!-- birthday -->
           <li class="contact-item">
             <div class="icon-box">
@@ -660,7 +647,7 @@
         </section>
         <section class="contact-form">
           <h3 class="h3 form-title">Contact Form</h3>
-          <form action="https://wa.me/6281226769494?text=" method="get" target="_blank" class="form" data-form>
+          <form id="contact-form" class="form" data-form>
             <div class="input-wrapper">
               <input type="text" id="name" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
             </div>
@@ -670,28 +657,44 @@
               <span>Send Message</span>
             </button>
           </form>
+
           <script>
-            // Fungsi untuk mengirim pesan ke WhatsApp
-            const sendMessage = () => {
-              // Mengambil nilai input dari form
-              const name = document.getElementById('name').value;
-              const message = document.getElementById('message').value;
-              // Mengubah format pesan untuk URL WhatsApp
-              const messageURL = encodeURIComponent(`Hello, I'm ${name}. ${message}`);
-              // Menambahkan parameter ke URL WhatsApp
-              const url = `https://wa.me/6281226769494?text=${messageURL}`;
-              // Membuka link WhatsApp di tab baru
-              window.open(url);
-              // Mencegah form dari mengirimkan data
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
               event.preventDefault();
-            }
-            // Mengikat fungsi kirimPesan ke tombol submit
-            document.querySelector('form').addEventListener('submit', sendMessage);
+              // Ambil nilai input
+              var name = document.getElementById('name').value;
+              var message = document.getElementById('message').value;
+              
+              // Kirim pesan menggunakan EmailJS
+              var templateParams = {
+                from_name: name,
+                message: message
+              };
+              
+              emailjs.send('service_05qki3c', 'template_k4w167h', templateParams)
+                .then(function(response) {
+                  console.log('Pesan berhasil dikirim!', response.status, response.text);
+                  // Tambahkan tindakan yang ingin Anda lakukan setelah pesan terkirim
+                }, function(error) {
+                  console.log('Pesan gagal dikirim:', error);
+                  // Tambahkan tindakan yang ingin Anda lakukan jika pesan gagal dikirim
+                });
+                
+              // Kosongkan nilai input setelah mengirim pesan
+              document.getElementById('name').value = '';
+              document.getElementById('message').value = '';
+            });
           </script>
         </section>
       </article>
     </div>
   </main>
+  <script src="https://cdn.emailjs.com/sdk/2.6.4/email.min.js"></script>
+  <script>
+    (function(){
+      emailjs.init('Vi_-rNGlXR5KnVth7'); // Ganti YOUR_USER_ID dengan User ID EmailJS Anda
+    })();
+  </script>
   <!-- custom js link -->
   <script src="./assets/js/script.js"></script>
   <!-- ionicon link -->
