@@ -70,6 +70,36 @@
               <address>Purwokerto, ID</address>
             </div>
           </li>
+          <li class="contact-item">
+            <div class="icon-box">
+              <ion-icon name="time-outline"></ion-icon>
+            </div>
+            <div class="contact-info">
+              <p class="contact-title">Time</p>
+              <p id="current-time"></p>
+            </div>
+          </li>
+
+          <script>
+            function updateTime() {
+              var now = new Date();
+              var hours = now.getUTCHours() + 7; // Menambahkan offset GMT +7
+              var minutes = now.getUTCMinutes();
+              var seconds = now.getUTCSeconds();
+
+              // Format waktu menjadi hh:mm:ss
+              var formattedTime = formatTime(hours) + ":" + formatTime(minutes) + ":" + formatTime(seconds);
+
+              document.getElementById("current-time").textContent = formattedTime;
+            }
+
+            function formatTime(time) {
+              return time.toString().padStart(2, "0"); // Menambahkan nol di depan angka satu digit
+            }
+
+            setInterval(updateTime, 1000); // Memperbarui waktu setiap detik
+          </script>
+
         </ul>
         <!-- sosmed -->
         <div class="separator"></div>
