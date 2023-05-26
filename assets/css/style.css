@@ -1758,7 +1758,7 @@ textarea.form-input::-webkit-resizer { display: none; }
     text-overflow: ellipsis;
   }
 
-  .contact-info :is(.contact-link, time, address) {
+  .contact-info :is(.contact-link, time, address, #current-time) {
     --fs-7: 14px;
     font-weight: var(--fw-300);
   }
